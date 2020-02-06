@@ -1,3 +1,18 @@
+# PSOC Creator Temporary files
+Debug/
+codegentemp/
+Generated_Source/
+Backup/
+Export/
+
+*.log
+*.ini
+
+*.cyfit
+*.rpt
+*.html
+*.svd
+
 # Prerequisites
 *.d
 
@@ -30,3 +45,10 @@
 *.exe
 *.out
 *.app
+
+# User local setting files
+*.lilu1
+*.LL_W530
+*.LUKE
+*.Lu Li
+*.LL-Z370-01
