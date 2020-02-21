@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "project.h": "c",
+        "stdio.h": "c",
+        "bmi160_psoc.h": "c"
+    }
+}
