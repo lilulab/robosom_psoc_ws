@@ -30,7 +30,7 @@ int8_t imu_bmi160_read_steps(void);
 
 // USBUART
 #define USBFS_DEVICE    (0u)
-#define USBUART_BUFFER_SIZE (64u)
+#define USBUART_BUFFER_SIZE (256u)
 uint16 count;
 uint8 buffer[USBUART_BUFFER_SIZE];
 void USBUART_user_check_init(void);
@@ -38,6 +38,11 @@ void USBUART_user_echo(void);
 
 // Testing Function
 void print_imu_via_usbuart(void);
+
+// System clock
+uint32 sys_clock_cur_ms = 0;
+float sys_clock_cur_us_in_ms = 0;
+void sys_clock_ms_callback(void); // 1ms callback interrupt function
 
 
 int main(void)
@@ -68,9 +73,15 @@ int main(void)
     Led_Key_Write(1);
     
     CyDelay(100);
+    
+    // Start system 1ms tick
+    CySysTickStart();
+    CySysTickSetCallback(0, sys_clock_ms_callback);
+    CySysTickEnableInterrupt();
        
     for(;;)
     {
+
         imu_bmi160_read_acc_gyo();
         imu_bmi160_read_steps();
         USBUART_user_check_init();
@@ -124,18 +135,21 @@ int8_t imu_bmi160_config(void)
     /* Select the Output data rate, range of accelerometer sensor */
     // sensor.accel_cfg.odr = BMI160_ACCEL_ODR_1600HZ;
     sensor.accel_cfg.odr = BMI160_ACCEL_ODR_800HZ;
-    sensor.accel_cfg.range = BMI160_ACCEL_RANGE_2G;
+    sensor.accel_cfg.range = BMI160_ACCEL_RANGE_4G;
     sensor.accel_cfg.bw = BMI160_ACCEL_BW_NORMAL_AVG4;
     // sensor.accel_cfg.bw = BMI160_ACCEL_BW_RES_AVG8;
+    #define IMU_ACC_SCALE 4
 
     /* Select the power mode of accelerometer sensor */
     sensor.accel_cfg.power = BMI160_ACCEL_NORMAL_MODE;
 
     /* Select the Output data rate, range of Gyroscope sensor */
     sensor.gyro_cfg.odr = BMI160_GYRO_ODR_3200HZ;
-    sensor.gyro_cfg.range = BMI160_GYRO_RANGE_2000_DPS;
+    //sensor.gyro_cfg.range = BMI160_GYRO_RANGE_1000_DPS;
+    sensor.gyro_cfg.range = BMI160_GYRO_RANGE_250_DPS;
     sensor.gyro_cfg.bw = BMI160_GYRO_BW_NORMAL_MODE;
     // sensor.gyro_cfg.bw = BMI160_GYRO_BW_OSR2_MODE;
+    #define IMU_GYO_SCALE 250
 
     /* Select the power mode of Gyroscope sensor */
     sensor.gyro_cfg.power = BMI160_GYRO_NORMAL_MODE; 
@@ -247,18 +261,29 @@ void USBUART_user_echo(void) {
 
 void print_imu_via_usbuart(void)
 {   
-    int32_t gyro_offset = 50000;
+    //int32_t gyro_offset = 50000;
+    sys_clock_cur_us_in_ms = (float)CySysTickGetValue() * (1/(float)cydelay_freq_hz);
 
     while (0u == USBUART_CDCIsReady())
     {
     }
 
-    sprintf((char *)buffer, "%d\t%d\t%d\t%d\t%ld\t%ld\t%ld\r\n", step_count, accel.x, accel.y, accel.z, (long)(gyro.x + gyro_offset), (long)(gyro.y + gyro_offset), (long)(gyro.z + gyro_offset));
-    
+    // sprintf((char *)buffer, "%d\t%d\t%d\t%d\t%ld\t%ld\t%ld\r\n", step_count, accel.x, accel.y, accel.z, (long)(gyro.x + gyro_offset), (long)(gyro.y + gyro_offset), (long)(gyro.z + gyro_offset));
+    //sprintf((char *)buffer, "%lu\t%d\t%d\t%d\t%d\t%d\t%d\r\n", sys_clock_cur_ms, accel.x, accel.y, accel.z, gyro.x, gyro.y, gyro.z);
+    sprintf((char *)buffer, "%f\t%f\t%f\t%f\t%f\t%f\t%f\r\n", (float)sys_clock_cur_ms/1000 + sys_clock_cur_us_in_ms, 
+                                (float)accel.x/32768*IMU_ACC_SCALE*9.80665, (float)accel.y/32768*IMU_ACC_SCALE*9.80665,(float)accel.z/32768*IMU_ACC_SCALE*9.80665, 
+                                (float)gyro.x/32768*IMU_GYO_SCALE, (float)gyro.y/32768*IMU_GYO_SCALE, (float)gyro.z/32768*IMU_GYO_SCALE);
+
+
     //count = sizeof(buffer);
     /* Send data back to host. */
     //USBUART_PutData(buffer, count);
     USBUART_PutString((char8 *)buffer);
+}
+
+// 1ms system tick callback interrupt function
+void sys_clock_ms_callback(void){
+    sys_clock_cur_ms ++; // increment ms counter by 1
 }
 
 /* [] END OF FILE */

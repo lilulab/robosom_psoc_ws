@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <blockRegMap version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://cypress.com/xsd/cyblockregmap cyblockregmap.xsd" xmlns="http://cypress.com/xsd/cyblockregmap">
-  <block name="BIO_25" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_24" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_23" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_22" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_25" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_28" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_27" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_26" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_22" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_18" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_17" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_16" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_15" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_18" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_21" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_20" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_19" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_29" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SCL_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="SDA_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="GND_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="I2C_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="BusClock" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
     <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -98,8 +101,6 @@
       <field name="timeout_period_highnibble" from="3" to="0" access="RW" resetVal="" desc="The configuration of this register along with that in register TMOUT_CFG1 to define the number units before SCL or SDA stuck low timeout triggers the I2C interrupt. The one unit is equal to SYSCLK/1024. The TMOUT_CFG1 defines higher octet of the period." hidden="false" />
     </register>
   </block>
-  <block name="SCL_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="SDA_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Em_EEPROM_Dynamic" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="cy_boot" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="USBUART" BASE="0x0" SIZE="0x0" desc="USBFS" visible="true" hidden="false">
@@ -959,21 +960,20 @@
       <field name="RA9" from="0" to="0" access="RW" resetVal="" desc="Read Address for EP MSB." hidden="false" />
     </register>
   </block>
-  <block name="GND_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_32" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_31" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_30" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_29" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_32" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Resistor_Red_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="GND_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_33" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_15" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Led_Red" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="P2_7" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_00" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="P2_4" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="P2_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_00" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Bootloadable" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Clock_1" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="P2_6" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="PWM_LED" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false">
     <block name="vmIRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
@@ -1034,20 +1034,21 @@
     <register name="PWM_LED_COMPARE" address="0x40004F06" bitWidth="16" desc="TMRx.CNT_CMP0 - Assigned Compare Value" hidden="false" />
   </block>
   <block name="Led_Blue" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="Led_Key" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="P2_5" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="Led_Green" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="Led_Key" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_01" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_11" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_10" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_09" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_08" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_11" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_14" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_13" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_12" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_08" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
-  <block name="BIO_04" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_03" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_02" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_01" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
+  <block name="BIO_04" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_07" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_06" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
   <block name="BIO_05" BASE="0x0" SIZE="0x0" desc="" visible="true" hidden="false" />
