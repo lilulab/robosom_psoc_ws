@@ -3,7 +3,7 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="robosom_psoc_ws" persistent="robosom_psoc_ws.cywrk" platform="NOT_USED">
-<current_project name=".\Pri03_ROBOSOM_ADC_To_UART.cydsn\Pri03_ROBOSOM_ADC_To_UART.cyprj" />
+<current_project name=".\Pri04_ROBOSOM_ADC_4Ch_To_UART.cydsn\Pri04_ROBOSOM_ADC_4Ch_To_UART.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
@@ -11,10 +11,11 @@
 <v>.\Pri01_ROBOSOM_Template_Bootloadable.cydsn\Pri01_ROBOSOM_Template_Bootloadable.cyprj</v>
 <v>.\Pri02_ROBOSOM_IMU_Test.cydsn\Pri02_ROBOSOM_IMU_Test.cyprj</v>
 <v>.\Pri03_ROBOSOM_ADC_To_UART.cydsn\Pri03_ROBOSOM_ADC_To_UART.cyprj</v>
+<v>.\Pri04_ROBOSOM_ADC_4Ch_To_UART.cydsn\Pri04_ROBOSOM_ADC_4Ch_To_UART.cyprj</v>
 </projects>
 <workspace_id v="43adb24a-68a4-4637-884f-83778c930dfb" />
-<WriteAppVersionLastSavedWith v="4.3.0.1445" />
-<WriteAppMarketingVersionLastSavedWith v="4.3" />
+<WriteAppVersionLastSavedWith v="4.2.0.641" />
+<WriteAppMarketingVersionLastSavedWith v="4.2" />
 <CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize+CyPrjDependencyList" version="4">
 <wrkspc_dependencies />
 </CyGuid_dcbd9771-0334-43dc-9cc3-fe99dc3c5316>
