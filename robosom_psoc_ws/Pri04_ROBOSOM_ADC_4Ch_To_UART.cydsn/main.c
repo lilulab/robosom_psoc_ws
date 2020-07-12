@@ -12,11 +12,22 @@
 #include "project.h"
 #include "stdio.h"
 
-// ADC
+/* ========================================
+ *
+ * ADC Part 1/3 - Params
+ *
+ * ========================================
+*/
 void print_adc_via_usbuart(void);
 int16 adc_val_int16[4] = {0, 0, 0, 0};
 float32 adc_mv_f32[4] = {0, 0, 0, 0};
 float32 adc_mv_mean[4] = {0, 0, 0, 0};
+
+/* ========================================
+ * ADC Part 1/3 Ends here
+ * ========================================
+*/
+
 
 // USBUART
 #define USBFS_DEVICE    (0u)
@@ -42,11 +53,23 @@ int main(void)
     USBUART_Start(USBFS_DEVICE, USBUART_5V_OPERATION);
     USBUART_CDC_Init();
     
-    /* Start the components */
+    /* ========================================
+     *
+     * ADC Part 2/3 - Init Sequence
+     *
+     * ========================================
+    */
+    
+    /* Start the ADC components */
     ADC_SAR_Seq_1_Start();
     
     /* Start the ADC conversion */
     ADC_SAR_Seq_1_StartConvert();
+    
+    /* ========================================
+     * ADC Part 2/3 Ends here
+     * ========================================
+    */
     
     // PWM Block Init
     PWM_LED_Start();
@@ -75,32 +98,46 @@ int main(void)
          * to convert the ADC counts into mV before transmitting via
          * the UART.  See the datasheet API description for more
          * details */
+        
+        /* ========================================
+         *
+         * ADC Part 3/3 - Sensor Update 
+         *
+         * ========================================
+        */
             
         // wait for ADC update
         ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
         
         // Get ADC raw values
-        //for (uint8_t i = 0; i<4; i++)
-        //{
+        for (uint8_t i = 0; i<4; i++)
+        {
 
             // Get bit value
-            //adc_val_int16[i] = ADC_SAR_Seq_1_GetResult16(i);
+            adc_val_int16[i] = ADC_SAR_Seq_1_GetResult16(i);
             
             // Convert to volt and shift about mean
-            //adc_mv_f32[i] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[i]) - adc_mv_mean[i];
-            //adc_mv_f32[i] = (i+1) * 1.1; // [DEBUG] test function
+            adc_mv_f32[i] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[i]) - adc_mv_mean[i];
+            // adc_mv_f32[i] = (i+1) * 1.1; // [DEBUG] test function
             
-        //}
+        }
         
-        adc_val_int16[0] = ADC_SAR_Seq_1_GetResult16(0u);
-        adc_val_int16[1] = ADC_SAR_Seq_1_GetResult16(1u);
-        adc_val_int16[2] = ADC_SAR_Seq_1_GetResult16(2u);
-        adc_val_int16[3] = ADC_SAR_Seq_1_GetResult16(3u);
+        /* ========================================
+         * ADC Part 3/3 Ends here
+         * ========================================
+        */
         
-        adc_mv_f32[0] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[0]) - adc_mv_mean[0];
-        adc_mv_f32[1] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[1]) - adc_mv_mean[1];
-        adc_mv_f32[2] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[2]) - adc_mv_mean[2];
-        adc_mv_f32[3] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[3]) - adc_mv_mean[3];
+//        adc_val_int16[0] = ADC_SAR_Seq_1_GetResult16(0u);
+//        adc_val_int16[1] = ADC_SAR_Seq_1_GetResult16(1u);
+//        adc_val_int16[2] = ADC_SAR_Seq_1_GetResult16(2u);
+//        adc_val_int16[3] = ADC_SAR_Seq_1_GetResult16(3u);
+//        
+//        adc_mv_f32[0] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[0]) - adc_mv_mean[0];
+//        adc_mv_f32[1] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[1]) - adc_mv_mean[1];
+//        adc_mv_f32[2] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[2]) - adc_mv_mean[2];
+//        adc_mv_f32[3] = ADC_SAR_Seq_1_CountsTo_Volts(adc_val_int16[3]) - adc_mv_mean[3];
+        
+
         
         // print result to USBUART
         print_adc_via_usbuart();
