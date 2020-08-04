@@ -18,7 +18,6 @@
  *
  * ========================================
 */
-void print_adc_via_usbuart(void);
 int16 adc_val_int16[4] = {0, 0, 0, 0};
 float32 adc_mv_f32[4] = {0, 0, 0, 0};
 float32 adc_mv_mean[4] = {0, 0, 0, 0};
@@ -29,6 +28,7 @@ float32 adc_mv_mean[4] = {0, 0, 0, 0};
 */
 
 
+
 // USBUART
 #define USBFS_DEVICE    (0u)
 #define USBUART_BUFFER_SIZE (256u)
@@ -36,6 +36,7 @@ uint16 count;
 uint8 buffer[USBUART_BUFFER_SIZE];
 void USBUART_user_check_init(void);
 void USBUART_user_echo(void);
+void print_adc_via_usbuart(void);
 
 // System clock
 uint32 sys_clock_cur_ms = 0;
