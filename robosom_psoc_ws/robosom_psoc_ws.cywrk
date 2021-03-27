@@ -12,6 +12,7 @@
 <v>.\Pri02_ROBOSOM_IMU_Test.cydsn\Pri02_ROBOSOM_IMU_Test.cyprj</v>
 <v>.\Pri03_ROBOSOM_ADC_To_UART.cydsn\Pri03_ROBOSOM_ADC_To_UART.cyprj</v>
 <v>.\Pri04_ROBOSOM_ADC_4Ch_To_UART.cydsn\Pri04_ROBOSOM_ADC_4Ch_To_UART.cyprj</v>
+<v>.\Pri05_ROBOSOM_Buzzer_Tester.cydsn\Pri05_ROBOSOM_Buzzer_Tester.cyprj</v>
 </projects>
 <workspace_id v="43adb24a-68a4-4637-884f-83778c930dfb" />
 <WriteAppVersionLastSavedWith v="4.3.0.1445" />
